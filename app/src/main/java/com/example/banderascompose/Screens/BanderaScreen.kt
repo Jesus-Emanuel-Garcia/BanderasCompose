@@ -70,6 +70,8 @@ fun BanderaScreen(modifier: Modifier){
             Box(modifier = Modifier.background(Color.Red).constrainAs(c3){
                 linkTo(lineaG2, parent.end)
                 linkTo(parent.top,parent.bottom)
+
+
                 height = Dimension.fillToConstraints
                 width = Dimension.fillToConstraints
             })
