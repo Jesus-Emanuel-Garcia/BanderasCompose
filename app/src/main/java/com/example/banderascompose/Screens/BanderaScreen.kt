@@ -1,6 +1,7 @@
 package com.example.banderascompose.Screens
 
 import android.media.Image
+import android.widget.ImageView
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
@@ -18,6 +19,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.draw.rotate
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.painterResource
@@ -32,19 +34,56 @@ import com.example.banderascompose.R
 
 @Composable
 fun BanderaScreen(modifier: Modifier){
-    Row(modifier = modifier){
-        Column(modifier = Modifier.fillMaxHeight().weight(2f).background(colorResource(id = R.color.verde)), verticalArrangement = Arrangement.Center){
-            Text(text = stringResource(id = R.string.miNombre), fontSize = 60.sp)
-        }
-        Column(modifier = Modifier.fillMaxHeight().weight(2f).background(colorResource(id = R.color.white)), verticalArrangement = Arrangement.Center){
-            Image(painter = painterResource(id = R.drawable.descargar), contentDescription = "null")
-        }
-        Column(modifier = Modifier.fillMaxHeight().weight(2f).background(colorResource(id = R.color.rojo)), verticalArrangement = Arrangement.Center){
-            Box(modifier = Modifier.height(100.dp).width(100.dp).clip(CircleShape).background(colorResource(id = R.color.verde))){
-                Text("e", textAlign = TextAlign.Center)
+    ConstraintLayout(modifier=modifier) {
+        val (c1,c2,c3) = createRefs()
+        val lineaG = createGuidelineFromStart(0.28f)
+        val lineaG2 = createGuidelineFromStart(0.72f)
 
-            }
+
+
+        Box(modifier = Modifier
+            .background(Color.Red)
+            .constrainAs(c1) {
+                linkTo(parent.start, lineaG)
+                linkTo(parent.top, parent.bottom)
+                height = Dimension.fillToConstraints
+                width = Dimension.fillToConstraints
+            })
+
+        Box(modifier = Modifier
+            .background(Color.Yellow)
+            .constrainAs(c2) {
+                linkTo(lineaG, lineaG2)
+                linkTo(parent.top, parent.bottom)
+                height = Dimension.fillToConstraints
+                width = Dimension.fillToConstraints
+            }, Alignment.TopCenter
+        )
+        {
+            Image(
+                painter = painterResource(R.drawable.escudo_de_espa_a__mazonado__svg),
+                contentDescription = "escudo de españa",
+                modifier = Modifier
+                    .size(120.dp)
+                    .fillMaxSize().rotate(90f)
+            )
+
+
+
+
+
         }
+        Box(modifier = Modifier.background(Color.Red).constrainAs(c3){
+            linkTo(lineaG2, parent.end)
+            linkTo(parent.top,parent.bottom)
+
+
+            height = Dimension.fillToConstraints
+            width = Dimension.fillToConstraints
+        })
+
+
+
     }
 
 
