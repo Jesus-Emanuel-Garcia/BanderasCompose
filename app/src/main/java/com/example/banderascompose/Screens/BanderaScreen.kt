@@ -36,23 +36,25 @@ fun BanderaScreen(modifier: Modifier){
 
         ConstraintLayout(modifier=modifier) {
             val (c1,c2,c3) = createRefs()
-            val lineaG = createGuidelineFromTop(0.33f)
-            val lineaG2 = createGuidelineFromTop(0.66f)
+            val lineaG = createGuidelineFromStart(0.33f)
+            val lineaG2 = createGuidelineFromStart(0.66f)
+
 
 
             Box(modifier = Modifier
                 .background(Color.Green)
                 .constrainAs(c1) {
-                    linkTo(parent.start, parent.end)
-                    linkTo(parent.top, lineaG)
+                    linkTo(parent.start, lineaG)
+                    linkTo(parent.top, parent.bottom)
                     height = Dimension.fillToConstraints
                     width = Dimension.fillToConstraints
                 })
+
             Box(modifier = Modifier
                     .background(Color.White)
                     .constrainAs(c2) {
-                        linkTo(parent.start, parent.end)
-                        linkTo(c1.bottom, lineaG2)
+                        linkTo(lineaG, lineaG2)
+                        linkTo(parent.top, parent.bottom)
                         height = Dimension.fillToConstraints
                         width = Dimension.fillToConstraints
                     }, contentAlignment = Alignment.Center
@@ -65,14 +67,13 @@ fun BanderaScreen(modifier: Modifier){
                         .fillMaxSize()
                 )
             }
-            Box(modifier = Modifier
-                .background(Color.Red)
-                .constrainAs(c3) {
-                    linkTo(parent.start, parent.end)
-                    linkTo(c2.bottom, parent.bottom)
-                    height = Dimension.fillToConstraints
-                    width = Dimension.fillToConstraints
-                })
+            Box(modifier = Modifier.background(Color.Red).constrainAs(c3){
+                linkTo(lineaG2, parent.end)
+                linkTo(parent.top,parent.bottom)
+                height = Dimension.fillToConstraints
+                width = Dimension.fillToConstraints
+            })
+
 
 
         }
