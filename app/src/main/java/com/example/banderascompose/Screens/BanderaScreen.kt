@@ -31,51 +31,101 @@ import androidx.constraintlayout.compose.Dimension
 import com.example.banderascompose.R
 import androidx.compose.foundation.Canvas
 import androidx.compose.ui.graphics.Path
+import androidx.compose.foundation.Canvas
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.ui.geometry.Offset
+import androidx.compose.ui.graphics.drawscope.Fill
+import androidx.compose.ui.graphics.drawscope.Stroke
+import androidx.compose.ui.layout.layoutId
+import androidx.compose.ui.unit.dp
+import androidx.constraintlayout.compose.ConstraintLayout
+import androidx.constraintlayout.compose.ConstraintSet
+import kotlin.math.cos
+import kotlin.math.sin
 
 @Composable
 fun BanderaScreen(modifier: Modifier){
-    ConstraintLayout(
+    val constraintsNepal = ConstraintSet {
+        val lienzoNepal = createRefFor("lienzoNepal")
 
-        modifier = modifier.width(240.dp).height(290.dp)
-    ) {
-        val (pennantSup, pennantInf) = createRefs()
-        val mitad = createGuidelineFromTop(0.5f)
-
-
-        Canvas(modifier = Modifier.constrainAs(pennantSup) {
+        // Anclamos al centro de la pantalla
+        constrain(lienzoNepal) {
             top.linkTo(parent.top)
-            bottom.linkTo(mitad)
-            start.linkTo(parent.start)
-            end.linkTo(parent.end)
-            width = Dimension.fillToConstraints
-            height = Dimension.fillToConstraints
-        }) {
-            val triangSuperior = Path().apply {
-                moveTo(0f, 0f)
-                lineTo(size.width * 0.92f, size.height * 0.80f)
-                lineTo(0f, size.height)
-                close()
-            }
-            drawPath(triangSuperior, color = Color(0xFF003893))
-        }
-
-
-        Canvas(modifier = Modifier.constrainAs(pennantInf) {
-            top.linkTo(mitad)
             bottom.linkTo(parent.bottom)
             start.linkTo(parent.start)
             end.linkTo(parent.end)
-            width = Dimension.fillToConstraints
-            height = Dimension.fillToConstraints
-        }) {
-            val triangInferior = Path().apply {
+            // Dimensiones manuales para forzar la proporción angosta y alta[cite: 1]
+            width = Dimension.value(240.dp)
+            height = Dimension.value(290.dp)
+        }
+    }
+
+    // 2. Componente Visual
+    ConstraintLayout(
+        constraintSet = constraintsNepal,
+        modifier = modifier.fillMaxSize()
+    ) {
+        Canvas(modifier = Modifier.layoutId("lienzoNepal")) {
+            val w = size.width
+            val h = size.height
+
+            val azulBorde = Color(0xFF003893)
+            val carmesi = Color(0xFFDC143C)
+            val blanco = Color.White
+
+
+            val siluetaNepal = Path().apply {
                 moveTo(0f, 0f)
-                lineTo(size.width * 0.92f, size.height * 0.40f) // Solapa sutilmente arriba[cite: 1]
-                lineTo(0f, size.height)
+                lineTo(w * 0.95f, h * 0.45f)
+                lineTo(w * 0.30f, h * 0.45f)
+                lineTo(w * 0.85f, h)
+                lineTo(0f, h)
                 close()
             }
-            drawPath(triangInferior, color = Color(0xFF003893))
 
+
+            drawPath(path = siluetaNepal, color = carmesi, style = Fill)
+
+
+            drawPath(path = siluetaNepal, color = azulBorde, style = Stroke(width = 16f))
+
+
+            val cxLuna = w * 0.28f
+            val cyLuna = h * 0.28f
+            val radioLuna = w * 0.12f
+
+
+            drawCircle(
+                color = blanco,
+                radius = radioLuna,
+                center = Offset(cxLuna, cyLuna)
+            )
+
+            drawCircle(
+                color = carmesi,
+                radius = radioLuna * 0.9f,
+                center = Offset(cxLuna, cyLuna - (radioLuna * 0.3f))
+            )
+
+            val cxSol = w * 0.28f
+            val cySol = h * 0.70f
+            val radioExternoSol = w * 0.15f
+            val radioInternoSol = radioExternoSol * 0.5f
+
+            val pathSol = Path()
+            for (i in 0 until 24) {
+                val radioActual = if (i % 2 == 0) radioExternoSol else radioInternoSol
+                // Rotación en pasos de 15 grados (360 / 24 = 15)
+                val angulo = Math.toRadians((-90f + i * 15f).toDouble())
+
+                val x = cxSol + radioActual * cos(angulo).toFloat()
+                val y = cySol + radioActual * sin(angulo).toFloat()
+
+                if (i == 0) pathSol.moveTo(x, y) else pathSol.lineTo(x, y)
+            }
+            pathSol.close()
+
+            drawPath(path = pathSol, color = blanco)
         }
     }
 
