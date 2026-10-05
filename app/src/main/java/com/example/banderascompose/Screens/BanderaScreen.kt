@@ -32,23 +32,48 @@ import com.example.banderascompose.R
 
 @Composable
 fun BanderaScreen(modifier: Modifier){
-    Row(modifier = modifier){
-        Column(modifier = Modifier.fillMaxHeight().weight(2f).background(colorResource(id = R.color.verde)), verticalArrangement = Arrangement.Center){
-            Text(text = stringResource(id = R.string.miNombre), fontSize = 60.sp)
-        }
-        Column(modifier = Modifier.fillMaxHeight().weight(2f).background(colorResource(id = R.color.white)), verticalArrangement = Arrangement.Center){
-            Image(painter = painterResource(id = R.drawable.descargar), contentDescription = "null")
-        }
-        Column(modifier = Modifier.fillMaxHeight().weight(2f).background(colorResource(id = R.color.rojo)), verticalArrangement = Arrangement.Center){
-            Box(modifier = Modifier.height(100.dp).width(100.dp).clip(CircleShape).background(colorResource(id = R.color.verde))){
-                Text("e", textAlign = TextAlign.Center)
+    ConstraintLayout(modifier = modifier.fillMaxSize()) {
+        val (celeste1, blanco, celeste2, sol) = createRefs()
+        val gl1 = createGuidelineFromTop(1f / 3f)
+        val gl2 = createGuidelineFromTop(2f / 3f)
 
-            }
-        }
+
+        Box(Modifier.constrainAs(celeste1) {
+            start.linkTo(parent.start)
+            end.linkTo(parent.end)
+            top.linkTo(parent.top)
+            bottom.linkTo(gl1)
+            width = Dimension.fillToConstraints; height = Dimension.fillToConstraints
+        }.background(Color(0xFF74ACDF)))
+
+        Box(Modifier.constrainAs(blanco) {
+            start.linkTo(parent.start)
+            end.linkTo(parent.end)
+            top.linkTo(gl1)
+            bottom.linkTo(gl2)
+            width = Dimension.fillToConstraints; height = Dimension.fillToConstraints
+        }.background(Color.White))
+
+        Box(Modifier.constrainAs(celeste2) {
+            start.linkTo(parent.start)
+            end.linkTo(parent.end)
+            top.linkTo(gl2)
+            bottom.linkTo(parent.bottom)
+            width = Dimension.fillToConstraints; height = Dimension.fillToConstraints
+        }.background(Color(0xFF74ACDF)))
+
+
+        Box(Modifier.size(50.dp).clip(CircleShape).background(Color(0xFFF6B40E)).constrainAs(sol) {
+            top.linkTo(blanco.top)
+            bottom.linkTo(blanco.bottom)
+            start.linkTo(blanco.start)
+            end.linkTo(blanco.end)
+        })
+    }
     }
 
 
-}
+
 
 @Preview(showBackground = true)
 @Composable
