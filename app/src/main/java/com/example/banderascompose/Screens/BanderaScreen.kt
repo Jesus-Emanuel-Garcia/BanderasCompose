@@ -32,19 +32,34 @@ import com.example.banderascompose.R
 
 @Composable
 fun BanderaScreen(modifier: Modifier){
-    Row(modifier = modifier){
-        Column(modifier = Modifier.fillMaxHeight().weight(2f).background(colorResource(id = R.color.verde)), verticalArrangement = Arrangement.Center){
-            Text(text = stringResource(id = R.string.miNombre), fontSize = 60.sp)
-        }
-        Column(modifier = Modifier.fillMaxHeight().weight(2f).background(colorResource(id = R.color.white)), verticalArrangement = Arrangement.Center){
-            Image(painter = painterResource(id = R.drawable.descargar), contentDescription = "null")
-        }
-        Column(modifier = Modifier.fillMaxHeight().weight(2f).background(colorResource(id = R.color.rojo)), verticalArrangement = Arrangement.Center){
-            Box(modifier = Modifier.height(100.dp).width(100.dp).clip(CircleShape).background(colorResource(id = R.color.verde))){
-                Text("e", textAlign = TextAlign.Center)
+    ConstraintLayout(modifier = modifier.fillMaxSize()) {
+        val canton = createRef()
 
-            }
+
+        val stripeGuidelines = (0..13).map { createGuidelineFromTop(it / 13f) }
+
+
+        for (i in 0 until 13) {
+            val stripeRef = createRef()
+            Box(Modifier.constrainAs(stripeRef) {
+                start.linkTo(parent.start)
+                end.linkTo(parent.end)
+                top.linkTo(stripeGuidelines[i])
+                bottom.linkTo(stripeGuidelines[i + 1])
+                width = Dimension.fillToConstraints
+                height = Dimension.fillToConstraints
+            }.background(if (i % 2 == 0) Color(0xFFB22234) else Color.White))
         }
+
+
+        Box(Modifier.constrainAs(canton) {
+            start.linkTo(parent.start)
+            top.linkTo(parent.top)
+
+            width = Dimension.percent(0.4f)
+            height = Dimension.percent(0.54f)
+        }.background(Color(0xFF3C3B6E)))
+
     }
 
 
