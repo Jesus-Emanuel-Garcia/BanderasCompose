@@ -29,25 +29,75 @@ import androidx.compose.ui.unit.sp
 import androidx.constraintlayout.compose.ConstraintLayout
 import androidx.constraintlayout.compose.Dimension
 import com.example.banderascompose.R
+import androidx.compose.foundation.Canvas
+import androidx.compose.ui.geometry.Offset
+import androidx.compose.ui.graphics.Path
+import androidx.compose.ui.layout.layoutId
+import androidx.constraintlayout.compose.ConstraintLayout
+import androidx.constraintlayout.compose.ConstraintSet
+import kotlin.math.cos
+import kotlin.math.sin
 
 @Composable
 fun BanderaScreen(modifier: Modifier){
-    Row(modifier = modifier){
-        Column(modifier = Modifier.fillMaxHeight().weight(2f).background(colorResource(id = R.color.verde)), verticalArrangement = Arrangement.Center){
-            Text(text = stringResource(id = R.string.miNombre), fontSize = 60.sp)
-        }
-        Column(modifier = Modifier.fillMaxHeight().weight(2f).background(colorResource(id = R.color.white)), verticalArrangement = Arrangement.Center){
-            Image(painter = painterResource(id = R.drawable.descargar), contentDescription = "null")
-        }
-        Column(modifier = Modifier.fillMaxHeight().weight(2f).background(colorResource(id = R.color.rojo)), verticalArrangement = Arrangement.Center){
-            Box(modifier = Modifier.height(100.dp).width(100.dp).clip(CircleShape).background(colorResource(id = R.color.verde))){
-                Text("e", textAlign = TextAlign.Center)
 
-            }
+    val constraintsTurquia = ConstraintSet {
+        val lienzoPrincipal = createRefFor("lienzoPrincipal")
+
+        constrain(lienzoPrincipal) {
+            top.linkTo(parent.top)
+            bottom.linkTo(parent.bottom)
+            start.linkTo(parent.start)
+            end.linkTo(parent.end)
+            width = Dimension.fillToConstraints
+            height = Dimension.fillToConstraints
         }
     }
 
 
+    ConstraintLayout(
+        constraintSet = constraintsTurquia,
+        modifier = modifier.fillMaxSize()
+    ) {
+        Canvas(modifier = Modifier.layoutId("lienzoPrincipal")) {
+            val colorRojo = Color(0xFFE30A17)
+            val cy = size.height / 2f
+
+
+            drawRect(color = colorRojo)
+
+
+            drawCircle(
+                color = Color.White,
+                radius = size.height * 0.30f,
+                center = Offset(size.width * 0.38f, cy)
+            )
+
+            drawCircle(
+                color = colorRojo,
+                radius = size.height * 0.24f,
+                center = Offset(size.width * 0.38f + size.height * 0.09f, cy)
+            )
+
+
+            val cxEstrella = size.width * 0.65f
+            val rExterno = size.height * 0.12f
+            val rInterno = rExterno * 0.38f
+            val pathEstrella = Path()
+
+            for (i in 0 until 10) {
+                val radio = if (i % 2 == 0) rExterno else rInterno
+                val angulo = Math.toRadians((-90f + i * 36f).toDouble())
+
+                val x = cxEstrella + radio * cos(angulo).toFloat()
+                val y = cy + radio * sin(angulo).toFloat()
+
+                if (i == 0) pathEstrella.moveTo(x, y) else pathEstrella.lineTo(x, y)
+            }
+            pathEstrella.close()
+            drawPath(path = pathEstrella, color = Color.White)
+        }
+    }
 }
 
 @Preview(showBackground = true)
