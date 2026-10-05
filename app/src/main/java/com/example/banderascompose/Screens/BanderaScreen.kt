@@ -30,30 +30,106 @@ import androidx.constraintlayout.compose.ConstraintLayout
 import androidx.constraintlayout.compose.Dimension
 import com.example.banderascompose.R
 
-@Composable
-fun BanderaScreen(modifier: Modifier){
-    Row(modifier = modifier){
-        Column(modifier = Modifier.fillMaxHeight().weight(2f).background(colorResource(id = R.color.verde)), verticalArrangement = Arrangement.Center){
-            Text(text = stringResource(id = R.string.miNombre), fontSize = 60.sp)
-        }
-        Column(modifier = Modifier.fillMaxHeight().weight(2f).background(colorResource(id = R.color.white)), verticalArrangement = Arrangement.Center){
-            Image(painter = painterResource(id = R.drawable.descargar), contentDescription = "null")
-        }
-        Column(modifier = Modifier.fillMaxHeight().weight(2f).background(colorResource(id = R.color.rojo)), verticalArrangement = Arrangement.Center){
-            Box(modifier = Modifier.height(100.dp).width(100.dp).clip(CircleShape).background(colorResource(id = R.color.verde))){
-                Text("e", textAlign = TextAlign.Center)
+import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.size
 
+import androidx.compose.ui.unit.dp
+
+object ZombieData {
+    // Identificadores de la matriz
+    private const val O  = 0
+    private const val DG = 1
+    private const val LG = 2
+    private const val NG = 3
+    private const val BK = 4
+    private const val LB = 5
+    private const val DB = 6
+    private const val NP = 7
+    private const val DP = 8
+    private const val GY = 9
+    private const val DS = 10
+
+    // Mapeo de IDs a colores de Jetpack Compose
+    val colorMap: Map<Int, Color> = mapOf(
+        O  to Color.Transparent,
+        DG to Color(0xFF2E5D1E),
+        LG to Color(0xFF6BB343),
+        NG to Color(0xFF417A28),
+        BK to Color(0xFF141414),
+        LB to Color(0xFF28B4E3),
+        DB to Color(0xFF0E729C),
+        NP to Color(0xFF283C9D),
+        DP to Color(0xFF172368),
+        GY to Color(0xFF5A5A5A),
+        DS to Color(0xFF3C3C3C)
+    )
+
+    val matrix: Array<IntArray> = arrayOf(
+        intArrayOf(O,O,O,O, O,O,O,O, O,O,O,O, O,O,O,O, O,O,O,O, O,O,O,O),
+        intArrayOf(O,O,O,O, O,O,O,O, O,O,O,O, O,O,O,O, O,O,O,O, O,O,O,O),
+
+        // Cabeza
+        intArrayOf(O,O,O,O, O,O,O,O, DG,DG,DG,DG, DG,DG,DG,DG, O,O,O,O, O,O,O,O),
+        intArrayOf(O,O,O,O, O,O,O,O, DG,LG,LG,LG, LG,LG,LG,DG, O,O,O,O, O,O,O,O),
+        intArrayOf(O,O,O,O, O,O,O,O, DG,LG,LG,LG, LG,LG,LG,DG, O,O,O,O, O,O,O,O),
+        intArrayOf(O,O,O,O, O,O,O,O, DG,BK,BK,LG, LG,BK,BK,DG, O,O,O,O, O,O,O,O),
+        intArrayOf(O,O,O,O, O,O,O,O, DG,LG,LG,NG, NG,LG,LG,DG, O,O,O,O, O,O,O,O),
+        intArrayOf(O,O,O,O, O,O,O,O, DG,LG,LG,LG, LG,LG,LG,DG, O,O,O,O, O,O,O,O),
+        intArrayOf(O,O,O,O, O,O,O,O, DG,LG,LG,LG, LG,LG,LG,DG, O,O,O,O, O,O,O,O),
+        intArrayOf(O,O,O,O, O,O,O,O, DG,DG,DG,DG, DG,DG,DG,DG, O,O,O,O, O,O,O,O),
+
+        // Brazos y Camiseta (parte superior)
+        intArrayOf(O,O,O,O, DG,DG,DG,DG, DB,LB,LB,LB, LB,LB,LB,DB, DG,DG,DG,DG, O,O,O,O),
+        intArrayOf(O,O,O,O, DG,LG,LG,DG, DB,LB,LB,LB, LB,LB,LB,DB, DG,LG,LG,DG, O,O,O,O),
+        intArrayOf(O,O,O,O, DG,LG,LG,DG, DB,LB,LB,LB, LB,LB,LB,DB, DG,LG,LG,DG, O,O,O,O),
+        intArrayOf(O,O,O,O, DG,DG,DG,DG, DB,LB,LB,LB, LB,LB,LB,DB, DG,DG,DG,DG, O,O,O,O),
+
+        // Torso (Camiseta parte inferior)
+        intArrayOf(O,O,O,O, O,O,O,O, DB,LB,LB,LB, LB,LB,LB,DB, O,O,O,O, O,O,O,O),
+        intArrayOf(O,O,O,O, O,O,O,O, DB,LB,LB,LB, LB,LB,LB,DB, O,O,O,O, O,O,O,O),
+        intArrayOf(O,O,O,O, O,O,O,O, DB,LB,LB,LB, LB,LB,LB,DB, O,O,O,O, O,O,O,O),
+
+        // Pantalones
+        intArrayOf(O,O,O,O, O,O,O,O, DP,NP,NP,DP, DP,NP,NP,DP, O,O,O,O, O,O,O,O),
+        intArrayOf(O,O,O,O, O,O,O,O, DP,NP,NP,DP, DP,NP,NP,DP, O,O,O,O, O,O,O,O),
+        intArrayOf(O,O,O,O, O,O,O,O, DP,NP,NP,DP, DP,NP,NP,DP, O,O,O,O, O,O,O,O),
+        intArrayOf(O,O,O,O, O,O,O,O, DP,NP,NP,DP, DP,NP,NP,DP, O,O,O,O, O,O,O,O),
+        intArrayOf(O,O,O,O, O,O,O,O, DP,NP,NP,DP, DP,NP,NP,DP, O,O,O,O, O,O,O,O),
+
+        // Zapatos
+        intArrayOf(O,O,O,O, O,O,O,O, DS,GY,GY,DS, DS,GY,GY,DS, O,O,O,O, O,O,O,O),
+        intArrayOf(O,O,O,O, O,O,O,O, O,O,O,O, O,O,O,O, O,O,O,O, O,O,O,O)
+    )
+}
+
+@Composable
+fun ZombiePixelArtGrid() {
+
+    Column {
+        for (row in ZombieData.matrix) {
+
+            Row {
+                for (pixelId in row) {
+                    val pixelColor = ZombieData.colorMap[pixelId] ?: Color.Transparent
+
+                    Box(
+                        modifier = Modifier
+                            .size(16.dp)
+                            .background(pixelColor)
+                    )
+                }
             }
         }
     }
-
-
 }
+
 
 @Preview(showBackground = true)
 @Composable
-fun BanderaScreenPreview(){
-    BanderaScreen(modifier = Modifier.fillMaxSize())
-
+fun PreviewZombiePixelArt() {
+    ZombiePixelArtGrid()
 }
 
