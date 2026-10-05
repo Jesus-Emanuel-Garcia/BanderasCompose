@@ -38,16 +38,16 @@ fun BanderaScreen(modifier: Modifier){
     ConstraintLayout(modifier = modifier.fillMaxSize()) {
         val (stripe1, stripe2, stripe3, stripe4, stripe5, triangleGroup) = createRefs()
 
-        val stripeHeight = 0.2f // 5 franjas = 20% cada una[cite: 1]
+        val stripeHeight = 0.2f
 
-        // 5 Franjas encadenadas
+
         Box(Modifier.fillMaxWidth().fillMaxHeight(stripeHeight).background(Color(0xFF002E6E)).constrainAs(stripe1) { top.linkTo(parent.top) })
         Box(Modifier.fillMaxWidth().fillMaxHeight(stripeHeight).background(Color.White).constrainAs(stripe2) { top.linkTo(stripe1.bottom) })
         Box(Modifier.fillMaxWidth().fillMaxHeight(stripeHeight).background(Color(0xFF002E6E)).constrainAs(stripe3) { top.linkTo(stripe2.bottom) })
         Box(Modifier.fillMaxWidth().fillMaxHeight(stripeHeight).background(Color.White).constrainAs(stripe4) { top.linkTo(stripe3.bottom) })
         Box(Modifier.fillMaxWidth().fillMaxHeight(stripeHeight).background(Color(0xFF002E6E)).constrainAs(stripe5) { top.linkTo(stripe4.bottom) })
 
-        // Triángulo y estrella anclados al lado izquierdo
+
         Canvas(modifier = Modifier
             .fillMaxHeight()
             .fillMaxWidth(0.45f)
@@ -57,7 +57,7 @@ fun BanderaScreen(modifier: Modifier){
                 bottom.linkTo(parent.bottom)
             }) {
 
-            // Triángulo[cite: 1]
+
             val trianglePath = Path().apply {
                 moveTo(0f, 0f)
                 lineTo(size.width, size.height / 2f)
@@ -66,8 +66,7 @@ fun BanderaScreen(modifier: Modifier){
             }
             drawPath(trianglePath, color = Color(0xFFCB1428))
 
-            // Nota: Aquí se agregaría la lógica de la estrella (GenericShape)
-            // centrada en el centroide del triángulo como lo solicita el manual[cite: 1].
+
         }
     }
 
