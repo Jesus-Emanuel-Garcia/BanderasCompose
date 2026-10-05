@@ -13,6 +13,7 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.CircleShape
+import androidx.compose.foundation.shape.GenericShape
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -30,22 +31,36 @@ import androidx.constraintlayout.compose.ConstraintLayout
 import androidx.constraintlayout.compose.Dimension
 import com.example.banderascompose.R
 
+
+
+
+
+
+val RombosShape = GenericShape { size, _ ->
+    moveTo(size.width / 2f, 0f)
+    lineTo(size.width, size.height / 2f)
+    lineTo(size.width / 2f, size.height)
+    lineTo(0f, size.height / 2f)
+    close()
+} //[cite: 1]
 @Composable
 fun BanderaScreen(modifier: Modifier){
-    Row(modifier = modifier){
-        Column(modifier = Modifier.fillMaxHeight().weight(2f).background(colorResource(id = R.color.verde)), verticalArrangement = Arrangement.Center){
-            Text(text = stringResource(id = R.string.miNombre), fontSize = 60.sp)
-        }
-        Column(modifier = Modifier.fillMaxHeight().weight(2f).background(colorResource(id = R.color.white)), verticalArrangement = Arrangement.Center){
-            Image(painter = painterResource(id = R.drawable.descargar), contentDescription = "null")
-        }
-        Column(modifier = Modifier.fillMaxHeight().weight(2f).background(colorResource(id = R.color.rojo)), verticalArrangement = Arrangement.Center){
-            Box(modifier = Modifier.height(100.dp).width(100.dp).clip(CircleShape).background(colorResource(id = R.color.verde))){
-                Text("e", textAlign = TextAlign.Center)
+    ConstraintLayout(modifier = modifier.fillMaxSize().background(Color(0xFF009B3A))) {
+        val (rombo, circulo) = createRefs()
 
-            }
-        }
+        Box(Modifier.constrainAs(rombo) {
+            top.linkTo(parent.top); bottom.linkTo(parent.bottom)
+            start.linkTo(parent.start); end.linkTo(parent.end)
+
+            width = Dimension.percent(0.75f); height = Dimension.percent(0.75f)
+        }.clip(RombosShape).background(Color(0xFFFEDF00)))
+
+        Box(Modifier.size(200.dp).constrainAs(circulo) {
+            top.linkTo(rombo.top); bottom.linkTo(rombo.bottom)
+            start.linkTo(rombo.start); end.linkTo(rombo.end)
+        }.clip(CircleShape).background(Color(0xFF002776)))
     }
+
 
 
 }
