@@ -29,21 +29,53 @@ import androidx.compose.ui.unit.sp
 import androidx.constraintlayout.compose.ConstraintLayout
 import androidx.constraintlayout.compose.Dimension
 import com.example.banderascompose.R
+import androidx.compose.foundation.Canvas
+import androidx.compose.ui.graphics.Path
 
 @Composable
 fun BanderaScreen(modifier: Modifier){
-    Row(modifier = modifier){
-        Column(modifier = Modifier.fillMaxHeight().weight(2f).background(colorResource(id = R.color.verde)), verticalArrangement = Arrangement.Center){
-            Text(text = stringResource(id = R.string.miNombre), fontSize = 60.sp)
-        }
-        Column(modifier = Modifier.fillMaxHeight().weight(2f).background(colorResource(id = R.color.white)), verticalArrangement = Arrangement.Center){
-            Image(painter = painterResource(id = R.drawable.descargar), contentDescription = "null")
-        }
-        Column(modifier = Modifier.fillMaxHeight().weight(2f).background(colorResource(id = R.color.rojo)), verticalArrangement = Arrangement.Center){
-            Box(modifier = Modifier.height(100.dp).width(100.dp).clip(CircleShape).background(colorResource(id = R.color.verde))){
-                Text("e", textAlign = TextAlign.Center)
+    ConstraintLayout(
 
+        modifier = modifier.width(240.dp).height(290.dp)
+    ) {
+        val (pennantSup, pennantInf) = createRefs()
+        val mitad = createGuidelineFromTop(0.5f)
+
+
+        Canvas(modifier = Modifier.constrainAs(pennantSup) {
+            top.linkTo(parent.top)
+            bottom.linkTo(mitad)
+            start.linkTo(parent.start)
+            end.linkTo(parent.end)
+            width = Dimension.fillToConstraints
+            height = Dimension.fillToConstraints
+        }) {
+            val triangSuperior = Path().apply {
+                moveTo(0f, 0f)
+                lineTo(size.width * 0.92f, size.height * 0.80f)
+                lineTo(0f, size.height)
+                close()
             }
+            drawPath(triangSuperior, color = Color(0xFF003893))
+        }
+
+
+        Canvas(modifier = Modifier.constrainAs(pennantInf) {
+            top.linkTo(mitad)
+            bottom.linkTo(parent.bottom)
+            start.linkTo(parent.start)
+            end.linkTo(parent.end)
+            width = Dimension.fillToConstraints
+            height = Dimension.fillToConstraints
+        }) {
+            val triangInferior = Path().apply {
+                moveTo(0f, 0f)
+                lineTo(size.width * 0.92f, size.height * 0.40f) // Solapa sutilmente arriba[cite: 1]
+                lineTo(0f, size.height)
+                close()
+            }
+            drawPath(triangInferior, color = Color(0xFF003893))
+
         }
     }
 
