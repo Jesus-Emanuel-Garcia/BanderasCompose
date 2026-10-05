@@ -36,16 +36,16 @@ fun BanderaScreen(modifier: Modifier){
         val canton = createRef()
 
 
-        val stripeGuidelines = (0..13).map { createGuidelineFromTop(it / 13f) }
+        val lineaG = (0..13).map { createGuidelineFromTop(it / 13f) }
 
 
         for (i in 0 until 13) {
-            val stripeRef = createRef()
-            Box(Modifier.constrainAs(stripeRef) {
+            val lineaGREF = createRef()
+            Box(Modifier.constrainAs(lineaGREF) {
                 start.linkTo(parent.start)
                 end.linkTo(parent.end)
-                top.linkTo(stripeGuidelines[i])
-                bottom.linkTo(stripeGuidelines[i + 1])
+                top.linkTo(lineaG[i])
+                bottom.linkTo(lineaG[i + 1])
                 width = Dimension.fillToConstraints
                 height = Dimension.fillToConstraints
             }.background(if (i % 2 == 0) Color(0xFFB22234) else Color.White))
