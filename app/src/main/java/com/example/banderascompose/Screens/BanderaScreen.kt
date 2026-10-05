@@ -32,19 +32,35 @@ import com.example.banderascompose.R
 
 @Composable
 fun BanderaScreen(modifier: Modifier){
-    Row(modifier = modifier){
-        Column(modifier = Modifier.fillMaxHeight().weight(2f).background(colorResource(id = R.color.verde)), verticalArrangement = Arrangement.Center){
-            Text(text = stringResource(id = R.string.miNombre), fontSize = 60.sp)
-        }
-        Column(modifier = Modifier.fillMaxHeight().weight(2f).background(colorResource(id = R.color.white)), verticalArrangement = Arrangement.Center){
-            Image(painter = painterResource(id = R.drawable.descargar), contentDescription = "null")
-        }
-        Column(modifier = Modifier.fillMaxHeight().weight(2f).background(colorResource(id = R.color.rojo)), verticalArrangement = Arrangement.Center){
-            Box(modifier = Modifier.height(100.dp).width(100.dp).clip(CircleShape).background(colorResource(id = R.color.verde))){
-                Text("e", textAlign = TextAlign.Center)
+    ConstraintLayout(modifier = modifier.fillMaxSize()) {
+        val (amarilla, azul, roja) = createRefs()
 
-            }
-        }
+        val gl1 = createGuidelineFromTop(0.50f)
+        val gl2 = createGuidelineFromTop(0.75f)
+
+        Box(Modifier.constrainAs(amarilla) {
+            start.linkTo(parent.start)
+            end.linkTo(parent.end)
+            top.linkTo(parent.top)
+            bottom.linkTo(gl1)
+            width = Dimension.fillToConstraints; height = Dimension.fillToConstraints
+        }.background(Color(0xFFFFCE00)))
+
+        Box(Modifier.constrainAs(azul) {
+            start.linkTo(parent.start)
+            end.linkTo(parent.end)
+            top.linkTo(gl1)
+            bottom.linkTo(gl2)
+            width = Dimension.fillToConstraints; height = Dimension.fillToConstraints
+        }.background(Color(0xFF003893)))
+
+        Box(Modifier.constrainAs(roja) {
+            start.linkTo(parent.start)
+            end.linkTo(parent.end)
+            top.linkTo(gl2)
+            bottom.linkTo(parent.bottom)
+            width = Dimension.fillToConstraints; height = Dimension.fillToConstraints
+        }.background(Color(0xFFCE1126)))
     }
 
 
