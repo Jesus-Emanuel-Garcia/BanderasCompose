@@ -1,6 +1,7 @@
 package com.example.banderascompose.Screens
 
 import android.media.Image
+import androidx.compose.foundation.Canvas
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
@@ -9,6 +10,7 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
@@ -18,6 +20,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.painterResource
@@ -32,19 +35,45 @@ import com.example.banderascompose.R
 
 @Composable
 fun BanderaScreen(modifier: Modifier){
-    Row(modifier = modifier){
-        Column(modifier = Modifier.fillMaxHeight().weight(2f).background(colorResource(id = R.color.verde)), verticalArrangement = Arrangement.Center){
-            Text(text = stringResource(id = R.string.miNombre), fontSize = 60.sp)
-        }
-        Column(modifier = Modifier.fillMaxHeight().weight(2f).background(colorResource(id = R.color.white)), verticalArrangement = Arrangement.Center){
-            Image(painter = painterResource(id = R.drawable.descargar), contentDescription = "null")
-        }
-        Column(modifier = Modifier.fillMaxHeight().weight(2f).background(colorResource(id = R.color.rojo)), verticalArrangement = Arrangement.Center){
-            Box(modifier = Modifier.height(100.dp).width(100.dp).clip(CircleShape).background(colorResource(id = R.color.verde))){
-                Text("e", textAlign = TextAlign.Center)
+    ConstraintLayout(
+        modifier = modifier
+            .fillMaxSize()
+            .background(Color(0xFF012169))
+    ) {
+        val (diagonales, cruzBlancaH, cruzBlancaV, cruzRojaH, cruzRojaV) = createRefs()
 
+
+        Canvas(modifier = Modifier
+            .constrainAs(diagonales) {
+                top.linkTo(parent.top)
+                bottom.linkTo(parent.bottom)
+                start.linkTo(parent.start)
+                end.linkTo(parent.end)
+                width = Dimension.fillToConstraints
+                height = Dimension.fillToConstraints
             }
+        ) {
+            val grosorBlanco = size.height * 0.22f
+            drawLine(Color.White, Offset(0f, 0f), Offset(size.width, size.height), grosorBlanco)
+            drawLine(Color.White, Offset(size.width, 0f), Offset(0f, size.height), grosorBlanco)
+
         }
+
+
+        Box(modifier = Modifier.fillMaxHeight().fillMaxWidth(0.33f).background(Color.White).constrainAs(cruzBlancaV) {
+            centerHorizontallyTo(parent); top.linkTo(parent.top); bottom.linkTo(parent.bottom)
+        })
+        Box(modifier = Modifier.fillMaxWidth().fillMaxHeight(0.33f).background(Color.White).constrainAs(cruzBlancaH) {
+            centerVerticallyTo(parent); start.linkTo(parent.start); end.linkTo(parent.end)
+        })
+
+
+        Box(modifier = Modifier.fillMaxHeight().fillMaxWidth(0.2f).background(Color(0xFFC8102E)).constrainAs(cruzRojaV) {
+            centerHorizontallyTo(parent); top.linkTo(parent.top); bottom.linkTo(parent.bottom)
+        })
+        Box(modifier = Modifier.fillMaxWidth().fillMaxHeight(0.2f).background(Color(0xFFC8102E)).constrainAs(cruzRojaH) {
+            centerVerticallyTo(parent); start.linkTo(parent.start); end.linkTo(parent.end)
+        })
     }
 
 
