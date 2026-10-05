@@ -29,21 +29,104 @@ import androidx.compose.ui.unit.sp
 import androidx.constraintlayout.compose.ConstraintLayout
 import androidx.constraintlayout.compose.Dimension
 import com.example.banderascompose.R
+import androidx.compose.foundation.Canvas
+import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.ui.draw.rotate
+import androidx.compose.ui.graphics.Path
+import androidx.compose.ui.graphics.StrokeCap
+import androidx.compose.ui.graphics.StrokeJoin
+import androidx.compose.ui.graphics.drawscope.Stroke
+import androidx.compose.ui.layout.layoutId
+import androidx.constraintlayout.compose.ConstraintLayout
+import androidx.constraintlayout.compose.ConstraintSet
+
 
 @Composable
 fun BanderaScreen(modifier: Modifier){
-    Row(modifier = modifier){
-        Column(modifier = Modifier.fillMaxHeight().weight(2f).background(colorResource(id = R.color.verde)), verticalArrangement = Arrangement.Center){
-            Text(text = stringResource(id = R.string.miNombre), fontSize = 60.sp)
-        }
-        Column(modifier = Modifier.fillMaxHeight().weight(2f).background(colorResource(id = R.color.white)), verticalArrangement = Arrangement.Center){
-            Image(painter = painterResource(id = R.drawable.descargar), contentDescription = "null")
-        }
-        Column(modifier = Modifier.fillMaxHeight().weight(2f).background(colorResource(id = R.color.rojo)), verticalArrangement = Arrangement.Center){
-            Box(modifier = Modifier.height(100.dp).width(100.dp).clip(CircleShape).background(colorResource(id = R.color.verde))){
-                Text("e", textAlign = TextAlign.Center)
+    val constraintsButan = ConstraintSet {
+        val fondoDiagonal = createRefFor("fondoDiagonal")
+        val figuraDragon = createRefFor("figuraDragon")
 
+
+        constrain(fondoDiagonal) {
+            top.linkTo(parent.top)
+            bottom.linkTo(parent.bottom)
+            start.linkTo(parent.start)
+            end.linkTo(parent.end)
+            width = Dimension.fillToConstraints
+            height = Dimension.fillToConstraints
+        }
+
+
+        constrain(figuraDragon) {
+            top.linkTo(parent.top)
+            bottom.linkTo(parent.bottom)
+            start.linkTo(parent.start)
+            end.linkTo(parent.end)
+
+            width = Dimension.percent(0.6f)
+            height = Dimension.percent(0.2f)
+        }
+    }
+
+    ConstraintLayout(
+        constraintSet = constraintsButan,
+        modifier = modifier.fillMaxSize()
+    ) {
+        val amarilloButan = Color(0xFFFFD520)
+        val naranjaButan = Color(0xFFFF4E12)
+        val blanco = Color.White
+
+
+        Canvas(modifier = Modifier.layoutId("fondoDiagonal")) {
+            val w = size.width
+            val h = size.height
+
+
+            drawRect(color = amarilloButan)
+
+
+            val pathNaranja = Path().apply {
+                moveTo(0f, h)
+                lineTo(w, 0f)
+                lineTo(w, h)
+                close()
             }
+            drawPath(path = pathNaranja, color = naranjaButan)
+        }
+
+        Canvas(
+            modifier = Modifier
+                .layoutId("figuraDragon")
+                .rotate(-35f)
+        ) {
+            val w = size.width
+            val h = size.height
+
+
+            val pathCuerpo = Path().apply {
+                moveTo(0f, h * 0.8f)
+                lineTo(w * 0.2f, h * 0.2f)
+                lineTo(w * 0.4f, h * 0.8f)
+                lineTo(w * 0.6f, h * 0.2f)
+                lineTo(w * 0.8f, h * 0.8f)
+                lineTo(w, h * 0.4f)
+            }
+
+            drawPath(
+                path = pathCuerpo,
+                color = blanco,
+                style = Stroke(
+                    width = h * 0.15f,
+                    cap = StrokeCap.Round,
+                    join = StrokeJoin.Round
+                )
+            )
+
+
+            drawCircle(color = blanco, radius = h * 0.15f, center = androidx.compose.ui.geometry.Offset(0f, h * 0.8f)) // Orbe en la cola
+            drawCircle(color = blanco, radius = h * 0.15f, center = androidx.compose.ui.geometry.Offset(w, h * 0.4f))  // Orbe en la cabeza
         }
     }
 
