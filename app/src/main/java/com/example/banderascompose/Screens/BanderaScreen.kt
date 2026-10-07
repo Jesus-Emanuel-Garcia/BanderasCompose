@@ -7,8 +7,10 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.aspectRatio
 import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
@@ -32,22 +34,10 @@ import com.example.banderascompose.R
 
 @Composable
 fun BanderaScreen(modifier: Modifier){
-    Row(modifier = modifier){
-        Column(modifier = Modifier.fillMaxHeight().weight(2f).background(colorResource(id = R.color.verde)), verticalArrangement = Arrangement.Center){
-            Text(text = stringResource(id = R.string.miNombre), fontSize = 60.sp)
-        }
-        Column(modifier = Modifier.fillMaxHeight().weight(2f).background(colorResource(id = R.color.white)), verticalArrangement = Arrangement.Center){
-            Image(painter = painterResource(id = R.drawable.descargar), contentDescription = "null")
-        }
-        Column(modifier = Modifier.fillMaxHeight().weight(2f).background(colorResource(id = R.color.rojo)), verticalArrangement = Arrangement.Center){
-            Box(modifier = Modifier.height(100.dp).width(100.dp).clip(CircleShape).background(colorResource(id = R.color.verde))){
-                Text("e", textAlign = TextAlign.Center)
-
-            }
-        }
+    Box(modifier = modifier.aspectRatio(1f).background(Color(0xFFD52B1E))) {
+        Box(Modifier.align(Alignment.Center).fillMaxWidth(0.2f).fillMaxHeight(0.62f).background(Color.White))
+        Box(Modifier.align(Alignment.Center).fillMaxWidth(0.62f).fillMaxHeight(0.2f).background(Color.White))
     }
-
-
 }
 
 @Preview(showBackground = true)
