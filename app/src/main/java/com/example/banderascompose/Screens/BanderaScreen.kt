@@ -1,6 +1,7 @@
 package com.example.banderascompose.Screens
 
 import android.media.Image
+import androidx.compose.foundation.Canvas
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
@@ -9,6 +10,7 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
@@ -19,6 +21,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.drawscope.Stroke
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
@@ -29,24 +32,56 @@ import androidx.compose.ui.unit.sp
 import androidx.constraintlayout.compose.ConstraintLayout
 import androidx.constraintlayout.compose.Dimension
 import com.example.banderascompose.R
+import androidx.compose.foundation.Canvas
+import androidx.compose.foundation.layout.aspectRatio
+import androidx.compose.foundation.layout.size
+import androidx.compose.ui.geometry.Offset
+import androidx.compose.ui.geometry.Size
+import androidx.compose.ui.graphics.Path
+import androidx.compose.ui.unit.dp
+import kotlin.math.cos
+import kotlin.math.sin
+
 
 @Composable
 fun BanderaScreen(modifier: Modifier){
-    Row(modifier = modifier){
-        Column(modifier = Modifier.fillMaxHeight().weight(2f).background(colorResource(id = R.color.verde)), verticalArrangement = Arrangement.Center){
-            Text(text = stringResource(id = R.string.miNombre), fontSize = 60.sp)
-        }
-        Column(modifier = Modifier.fillMaxHeight().weight(2f).background(colorResource(id = R.color.white)), verticalArrangement = Arrangement.Center){
-            Image(painter = painterResource(id = R.drawable.descargar), contentDescription = "null")
-        }
-        Column(modifier = Modifier.fillMaxHeight().weight(2f).background(colorResource(id = R.color.rojo)), verticalArrangement = Arrangement.Center){
-            Box(modifier = Modifier.height(100.dp).width(100.dp).clip(CircleShape).background(colorResource(id = R.color.verde))){
-                Text("e", textAlign = TextAlign.Center)
+
+                Canvas(modifier = modifier.fillMaxSize().aspectRatio(1.5f)) {
+                    val band = size.height / 5f
+                    for (i in 0 until 5) {
+                        if (i % 2 == 0) drawRect(
+                            color = Color(0xFF002E6E),
+                            topLeft = Offset(0f, i * band),
+                            size = Size(size.width, band)
+                        )
+                    }
+
+                    val triWidth = size.width * 0.38f
+
+                    val trianglePath = Path().apply {
+                        moveTo(0f, 0f)
+                        lineTo(triWidth, size.height / 2f)
+                        lineTo(0f, size.height)
+                        close()
+
+
+                    }
+
+                    val centrox = triWidth * 0.22f
+                    val centroy = size.height / 2f
+
+                    val triaglePath = Path().apply {
+                        val radioEXT = triWidth * 0.18f
+                        val radioINT = radioEXT * 0.45f
+
+                    }
+
+                    drawPath(trianglePath, color = Color(0xFFCB1428))
+
+                    // Estrella centrada aprox en (triWidth * 0.38f, size.height / 2f)
+
 
             }
-        }
-    }
-
 
 }
 
