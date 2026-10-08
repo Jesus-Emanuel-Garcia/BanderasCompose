@@ -46,42 +46,78 @@ import kotlin.math.sin
 @Composable
 fun BanderaScreen(modifier: Modifier){
 
-                Canvas(modifier = modifier.fillMaxSize().aspectRatio(1.5f)) {
-                    val band = size.height / 5f
-                    for (i in 0 until 5) {
-                        if (i % 2 == 0) drawRect(
-                            color = Color(0xFF002E6E),
-                            topLeft = Offset(0f, i * band),
-                            size = Size(size.width, band)
-                        )
-                    }
+    fun Path.star(
+        centerX: Float,
+        centerY: Float,
+        outerRadius: Float,
+        innerRadius: Float
+    ) {
+        val points = 5
+        val angle = (2.0 * Math.PI / points).toFloat()
+        val halfAngle = angle / 2f
 
-                    val triWidth = size.width * 0.38f
+        moveTo(
+            centerX,
+            centerY - outerRadius
+        )
 
-                    val trianglePath = Path().apply {
-                        moveTo(0f, 0f)
-                        lineTo(triWidth, size.height / 2f)
-                        lineTo(0f, size.height)
-                        close()
+        for (i in 1 until points * 2) {
+            val r = if (i % 2 == 0) outerRadius else innerRadius
+            val a = i * halfAngle - Math.PI.toFloat() / 2f
+
+            val x = centerX + (r * kotlin.math.cos(a))
+            val y = centerY + (r * kotlin.math.sin(a))
+
+            lineTo(x, y)
+        }
+
+        close()
+    }
+
+    Canvas(modifier = modifier.fillMaxSize().aspectRatio(1.5f)) {
+        val band = size.height / 5f
+        for (i in 0 until 5) {
+            if (i % 2 == 0) drawRect(
+                color = Color(0xFF002E6E),
+                topLeft = Offset(0f, i * band),
+                size = Size(size.width, band)
+            )
+        }
 
 
-                    }
 
-                    val centrox = triWidth * 0.22f
-                    val centroy = size.height / 2f
-
-                    val triaglePath = Path().apply {
-                        val radioEXT = triWidth * 0.18f
-                        val radioINT = radioEXT * 0.45f
-
-                    }
-
-                    drawPath(trianglePath, color = Color(0xFFCB1428))
-
-                    // Estrella centrada aprox en (triWidth * 0.38f, size.height / 2f)
+        val triWidth = size.width * 0.38f
+        val trianglePath = Path().apply {
+            moveTo(0f, 0f)
+            lineTo(triWidth, size.height / 2f)
+            lineTo(0f, size.height)
+            close()
+        }
 
 
-            }
+
+        val centrox = triWidth / 3f
+        val centroy = size.height / 2f
+        val starPath = Path().apply {
+            val radioEXT = triWidth * 0.28f
+            val radioINT = radioEXT * 0.40f
+
+            star(
+                centerX = centrox,
+                centerY = centroy,
+                outerRadius = radioEXT,
+                innerRadius = radioINT
+            )
+        }
+
+        drawPath(trianglePath, color = Color(0xFFCB1428))
+        drawPath(starPath, color = Color.White)
+
+
+
+
+
+    }
 
 }
 
