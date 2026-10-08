@@ -29,22 +29,58 @@ import androidx.compose.ui.unit.sp
 import androidx.constraintlayout.compose.ConstraintLayout
 import androidx.constraintlayout.compose.Dimension
 import com.example.banderascompose.R
+import androidx.compose.ui.geometry.Offset
+import androidx.compose.ui.geometry.Size
+import androidx.compose.ui.graphics.Path
+import androidx.compose.foundation.Canvas
+import androidx.compose.foundation.layout.aspectRatio
 
 @Composable
 fun BanderaScreen(modifier: Modifier){
-    Row(modifier = modifier){
-        Column(modifier = Modifier.fillMaxHeight().weight(2f).background(colorResource(id = R.color.verde)), verticalArrangement = Arrangement.Center){
-            Text(text = stringResource(id = R.string.miNombre), fontSize = 60.sp)
-        }
-        Column(modifier = Modifier.fillMaxHeight().weight(2f).background(colorResource(id = R.color.white)), verticalArrangement = Arrangement.Center){
-            Image(painter = painterResource(id = R.drawable.descargar), contentDescription = "null")
-        }
-        Column(modifier = Modifier.fillMaxHeight().weight(2f).background(colorResource(id = R.color.rojo)), verticalArrangement = Arrangement.Center){
-            Box(modifier = Modifier.height(100.dp).width(100.dp).clip(CircleShape).background(colorResource(id = R.color.verde))){
-                Text("e", textAlign = TextAlign.Center)
+    Canvas(modifier = Modifier.fillMaxSize().aspectRatio(1.5f)) {
+        val width = size.width
+        val height = size.height
 
-            }
+        drawRect(
+            color = Color(0xFF001489),
+            size = Size(width, height / 2f)
+        )
+        drawRect(
+            color = Color(0xFFFFB612),
+            topLeft = Offset(0f, height / 2f),
+            size = Size(width, height / 2f)
+        )
+
+
+        val apexBlanco = Offset(width * 0.36f, height / 2f)
+        val grosorBlanco = height * 0.30f
+
+
+        drawLine(Color.White, Offset(0f, 0f), apexBlanco, strokeWidth = grosorBlanco)
+        drawLine(Color.White, Offset(0f, height), apexBlanco, strokeWidth = grosorBlanco)
+        drawLine(Color.White, apexBlanco, Offset(width, height * 0.14f), strokeWidth = grosorBlanco)
+        drawLine(Color.White, apexBlanco, Offset(width, height * 0.86f), strokeWidth = grosorBlanco)
+
+
+        val apexVerde = Offset(width * 0.37f, height * 0.51f)
+
+        val colorVerde = Color(0xFF007749)
+        val grosorVerde = height * 0.20f
+
+
+        drawLine(colorVerde, Offset(-2f, -2f), apexVerde, strokeWidth = grosorVerde)
+        drawLine(colorVerde, Offset(-2f, height + 2f), apexVerde, strokeWidth = grosorVerde)
+        drawLine(colorVerde, apexVerde, Offset(width + 2f, height * 0.15f), strokeWidth = grosorVerde)
+        drawLine(colorVerde, apexVerde, Offset(width + 2f, height * 0.85f), strokeWidth = grosorVerde)
+
+
+        val pathNegro = Path().apply {
+            moveTo(0f, 0f)
+            lineTo(0f, height)
+            lineTo(width * 0.33f, height * 0.5f)
+            close()
         }
+        drawPath(pathNegro, Color.Black)
     }
 
 
