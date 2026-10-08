@@ -41,7 +41,7 @@ import java.nio.file.WatchEvent
 
 @Composable
 fun CorazonPixelArt() {
-    // Definimos los colores y el tamaño del píxel para no repetir tanto código
+
     val rojo = Color.Red
     val vacio = Color.Transparent
     val tamanoPixel = 50.dp
