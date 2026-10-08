@@ -29,64 +29,97 @@ import androidx.compose.ui.unit.sp
 import androidx.constraintlayout.compose.ConstraintLayout
 import androidx.constraintlayout.compose.Dimension
 import com.example.banderascompose.R
+import androidx.compose.foundation.Canvas
+import androidx.compose.foundation.layout.aspectRatio
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.ui.geometry.Offset
+
 
 @Composable
 fun BanderaScreen(modifier: Modifier){
+    Canvas(modifier = Modifier.fillMaxSize().aspectRatio(1.5f)) {
+        val width = size.width
+        val height = size.height
 
 
-        ConstraintLayout(modifier=modifier) {
-            val (c1,c2,c3) = createRefs()
-            val lineaG = createGuidelineFromStart(0.33f)
-            val lineaG2 = createGuidelineFromStart(0.66f)
+        val azulMarino = Color(0xFF00247D)
+        drawRect(color = azulMarino)
+
+        val grosorDiagonalBlanca = height * 0.22f
 
 
+        drawLine(
+            color = Color.White,
+            start = Offset(-5f, -5f),
+            end = Offset(width + 5f, height + 8f),
+            strokeWidth = grosorDiagonalBlanca
+        )
 
-            Box(modifier = Modifier
-                .background(Color.Green)
-                .constrainAs(c1) {
-                    linkTo(parent.start, lineaG)
-                    linkTo(parent.top, parent.bottom)
-                    height = Dimension.fillToConstraints
-                    width = Dimension.fillToConstraints
-                })
-
-            Box(modifier = Modifier
-                    .background(Color.White)
-                    .constrainAs(c2) {
-                        linkTo(lineaG, lineaG2)
-                        linkTo(parent.top, parent.bottom)
-                        height = Dimension.fillToConstraints
-                        width = Dimension.fillToConstraints
-                    }, contentAlignment = Alignment.Center
-            ){
-                Image(
-                    painter = painterResource(R.drawable.descargar),
-                    contentDescription = "aguila_de_mexico",
-                    modifier = Modifier
-                        .size(120.dp)
-                        .fillMaxSize()
-                )
-            }
-            Box(modifier = Modifier.background(Color.Red).constrainAs(c3){
-                linkTo(lineaG2, parent.end)
-                linkTo(parent.top,parent.bottom)
+        drawLine(
+            color = Color.White,
+            start = Offset(-5f, height + 5f),
+            end = Offset(width + 5f, -5f),
+            strokeWidth = grosorDiagonalBlanca * 0.95f
+        )
 
 
-                height = Dimension.fillToConstraints
-                width = Dimension.fillToConstraints
-            })
+        val colorRojo = Color(0xFFCF142B)
+        val grosorDiagonalRoja = grosorDiagonalBlanca * 0.35f
 
 
+        drawLine(
+            color = colorRojo,
+            start = Offset(-10f, -2f),
+            end = Offset(width + 8f, height + 10f),
+            strokeWidth = grosorDiagonalRoja
+        )
 
-        }
+
+        drawLine(
+            color = colorRojo,
+            start = Offset(-8f, height + 8f),
+            end = Offset(width + 12f, -12f),
+            strokeWidth = grosorDiagonalRoja
+        )
 
 
 
+        val centroX = width * 0.5f
+        val centroY = height * 0.5f
+        val grosorCruzBlanca = height * 0.30f
 
 
+        drawLine(
+            color = Color.White,
+            start = Offset(0f, centroY),
+            end = Offset(width, centroY),
+            strokeWidth = grosorCruzBlanca
+        )
+
+        drawLine(
+            color = Color.White,
+            start = Offset(centroX, 0f),
+            end = Offset(centroX, height),
+            strokeWidth = grosorCruzBlanca
+        )
 
 
+        val grosorCruzRoja = grosorCruzBlanca * 0.50f
 
+        drawLine(
+            color = colorRojo,
+            start = Offset(0f, centroY + 4f),
+            end = Offset(width, centroY + 2f),
+            strokeWidth = grosorCruzRoja
+        )
+
+        drawLine(
+            color = colorRojo,
+            start = Offset(centroX - 3f, 0f),
+            end = Offset(centroX - 3f, height),
+            strokeWidth = grosorCruzRoja
+        )
+    }
 
 
 
