@@ -29,22 +29,38 @@ import androidx.compose.ui.unit.sp
 import androidx.constraintlayout.compose.ConstraintLayout
 import androidx.constraintlayout.compose.Dimension
 import com.example.banderascompose.R
+import androidx.compose.foundation.Canvas
+import androidx.compose.foundation.layout.aspectRatio
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.ui.geometry.Offset
+import androidx.compose.ui.graphics.Path
 
 @Composable
 fun BanderaScreen(modifier: Modifier){
-    Row(modifier = modifier){
-        Column(modifier = Modifier.fillMaxHeight().weight(2f).background(colorResource(id = R.color.verde)), verticalArrangement = Arrangement.Center){
-            Text(text = stringResource(id = R.string.miNombre), fontSize = 60.sp)
-        }
-        Column(modifier = Modifier.fillMaxHeight().weight(2f).background(colorResource(id = R.color.white)), verticalArrangement = Arrangement.Center){
-            Image(painter = painterResource(id = R.drawable.descargar), contentDescription = "null")
-        }
-        Column(modifier = Modifier.fillMaxHeight().weight(2f).background(colorResource(id = R.color.rojo)), verticalArrangement = Arrangement.Center){
-            Box(modifier = Modifier.height(100.dp).width(100.dp).clip(CircleShape).background(colorResource(id = R.color.verde))){
-                Text("e", textAlign = TextAlign.Center)
+    Canvas(modifier = Modifier.fillMaxSize().aspectRatio(1.5f)) {
+        val width = size.width
+        val height = size.height
 
-            }
+        val origen = Offset(0f, height)
+
+
+
+        val pathRojo = Path().apply {
+            moveTo(origen.x, origen.y)
+            lineTo(width * 0f / 3f, 0f)
+            lineTo(width, 0f) // Esquina superior derecha
+            close()
         }
+        drawPath(pathRojo, Color.Yellow)
+
+        val pathBlanco = Path().apply {
+            moveTo(origen.x, origen.y)
+            lineTo(width, 0f)
+            lineTo(width, height / 1f)
+            close()
+        }
+        drawPath(pathBlanco, Color.Red)
+
     }
 
 
