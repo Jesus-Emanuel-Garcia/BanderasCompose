@@ -30,6 +30,7 @@ import androidx.constraintlayout.compose.ConstraintLayout
 import androidx.constraintlayout.compose.Dimension
 import com.example.banderascompose.R
 import androidx.compose.foundation.Canvas
+import androidx.compose.foundation.layout.aspectRatio
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.geometry.Size
@@ -58,7 +59,7 @@ fun BanderaScreen(modifier: Modifier){
         constraintSet = constraintsSudafrica,
         modifier = modifier.fillMaxSize()
     ) {
-        Canvas(modifier = Modifier.layoutId("lienzoPrincipal")) {
+        Canvas(modifier = Modifier.layoutId("lienzoPrincipal").aspectRatio(1.5f)) {
             val w = size.width
             val h = size.height
 
