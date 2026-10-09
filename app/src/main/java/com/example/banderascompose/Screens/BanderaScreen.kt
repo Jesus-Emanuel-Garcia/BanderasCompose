@@ -47,20 +47,17 @@ import kotlin.math.sin
 fun BanderaScreen(modifier: Modifier){
     val constraintsNepal = ConstraintSet {
         val lienzoNepal = createRefFor("lienzoNepal")
-
-        // Anclamos al centro de la pantalla
         constrain(lienzoNepal) {
             top.linkTo(parent.top)
             bottom.linkTo(parent.bottom)
             start.linkTo(parent.start)
             end.linkTo(parent.end)
-            // Dimensiones manuales para forzar la proporción angosta y alta[cite: 1]
+
             width = Dimension.value(240.dp)
             height = Dimension.value(290.dp)
         }
     }
 
-    // 2. Componente Visual
     ConstraintLayout(
         constraintSet = constraintsNepal,
         modifier = modifier.fillMaxSize()
