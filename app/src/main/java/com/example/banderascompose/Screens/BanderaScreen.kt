@@ -40,48 +40,41 @@ import androidx.compose.ui.unit.dp
 import java.nio.file.WatchEvent
 
 @Composable
-fun CorazonPixelArt() {
+fun PixelArt() {
 
-    val rojo = Color.Red
     val vacio = Color.Transparent
-    val tamanoPixel = 50.dp
+    val negro = Color(0xFF1A1A1A)
+    val naranja = Color(0xFFF05A28)
+    val rojo = Color(0xFFED1C24)
+    val amarillo = Color(0xFFFFF200)
+    val celeste = Color(0xFF00ADEF)
+    val blanco = Color.White
+    val crema = Color(0xFFF3D2C1)
 
+    val tamanoPixel = 20.dp
 
     Column(modifier = Modifier.fillMaxSize()) {
 
 
         Row {
             Box(modifier = Modifier.size(tamanoPixel).background(vacio))
-            Box(modifier = Modifier.size(tamanoPixel).background(rojo))
+            Box(modifier = Modifier.size(tamanoPixel).background(vacio))
             Box(modifier = Modifier.size(tamanoPixel).background(vacio))
             Box(modifier = Modifier.size(tamanoPixel).background(rojo))
             Box(modifier = Modifier.size(tamanoPixel).background(vacio))
-        }
-
-
-        Row {
-            Box(modifier = Modifier.size(tamanoPixel).background(rojo))
-            Box(modifier = Modifier.size(tamanoPixel).background(rojo))
-            Box(modifier = Modifier.size(tamanoPixel).background(rojo))
-            Box(modifier = Modifier.size(tamanoPixel).background(rojo))
-            Box(modifier = Modifier.size(tamanoPixel).background(rojo))
-        }
-
-
-        Row {
-            Box(modifier = Modifier.size(tamanoPixel).background(rojo))
-            Box(modifier = Modifier.size(tamanoPixel).background(rojo))
-            Box(modifier = Modifier.size(tamanoPixel).background(rojo))
-            Box(modifier = Modifier.size(tamanoPixel).background(rojo))
-            Box(modifier = Modifier.size(tamanoPixel).background(rojo))
-        }
-
-
-        Row {
             Box(modifier = Modifier.size(tamanoPixel).background(vacio))
-            Box(modifier = Modifier.size(tamanoPixel).background(rojo))
-            Box(modifier = Modifier.size(tamanoPixel).background(rojo))
-            Box(modifier = Modifier.size(tamanoPixel).background(rojo))
+            Box(modifier = Modifier.size(tamanoPixel).background(vacio))
+            Box(modifier = Modifier.size(tamanoPixel).background(vacio))
+            Box(modifier = Modifier.size(tamanoPixel).background(vacio))
+            Box(modifier = Modifier.size(tamanoPixel).background(vacio))
+            Box(modifier = Modifier.size(tamanoPixel).background(vacio))
+            Box(modifier = Modifier.size(tamanoPixel).background(vacio))
+            Box(modifier = Modifier.size(tamanoPixel).background(vacio))
+            Box(modifier = Modifier.size(tamanoPixel).background(vacio))
+            Box(modifier = Modifier.size(tamanoPixel).background(vacio))
+            Box(modifier = Modifier.size(tamanoPixel).background(vacio))
+            Box(modifier = Modifier.size(tamanoPixel).background(vacio))
+            Box(modifier = Modifier.size(tamanoPixel).background(vacio))
             Box(modifier = Modifier.size(tamanoPixel).background(vacio))
         }
 
@@ -90,6 +83,411 @@ fun CorazonPixelArt() {
             Box(modifier = Modifier.size(tamanoPixel).background(vacio))
             Box(modifier = Modifier.size(tamanoPixel).background(vacio))
             Box(modifier = Modifier.size(tamanoPixel).background(rojo))
+            Box(modifier = Modifier.size(tamanoPixel).background(rojo))
+            Box(modifier = Modifier.size(tamanoPixel).background(vacio))
+            Box(modifier = Modifier.size(tamanoPixel).background(vacio))
+            Box(modifier = Modifier.size(tamanoPixel).background(vacio))
+            Box(modifier = Modifier.size(tamanoPixel).background(vacio))
+            Box(modifier = Modifier.size(tamanoPixel).background(vacio))
+            Box(modifier = Modifier.size(tamanoPixel).background(vacio))
+            Box(modifier = Modifier.size(tamanoPixel).background(vacio))
+            Box(modifier = Modifier.size(tamanoPixel).background(vacio))
+            Box(modifier = Modifier.size(tamanoPixel).background(vacio))
+            Box(modifier = Modifier.size(tamanoPixel).background(vacio))
+            Box(modifier = Modifier.size(tamanoPixel).background(vacio))
+            Box(modifier = Modifier.size(tamanoPixel).background(vacio))
+            Box(modifier = Modifier.size(tamanoPixel).background(vacio))
+            Box(modifier = Modifier.size(tamanoPixel).background(vacio))
+            Box(modifier = Modifier.size(tamanoPixel).background(vacio))
+        }
+
+
+        Row {
+            Box(modifier = Modifier.size(tamanoPixel).background(vacio))
+            Box(modifier = Modifier.size(tamanoPixel).background(rojo))
+            Box(modifier = Modifier.size(tamanoPixel).background(naranja))
+            Box(modifier = Modifier.size(tamanoPixel).background(amarillo))
+            Box(modifier = Modifier.size(tamanoPixel).background(vacio))
+            Box(modifier = Modifier.size(tamanoPixel).background(vacio))
+            Box(modifier = Modifier.size(tamanoPixel).background(vacio))
+            Box(modifier = Modifier.size(tamanoPixel).background(vacio))
+            Box(modifier = Modifier.size(tamanoPixel).background(negro))
+            Box(modifier = Modifier.size(tamanoPixel).background(negro))
+            Box(modifier = Modifier.size(tamanoPixel).background(negro))
+            Box(modifier = Modifier.size(tamanoPixel).background(negro))
+            Box(modifier = Modifier.size(tamanoPixel).background(vacio))
+            Box(modifier = Modifier.size(tamanoPixel).background(vacio))
+            Box(modifier = Modifier.size(tamanoPixel).background(vacio))
+            Box(modifier = Modifier.size(tamanoPixel).background(vacio))
+            Box(modifier = Modifier.size(tamanoPixel).background(vacio))
+            Box(modifier = Modifier.size(tamanoPixel).background(vacio))
+            Box(modifier = Modifier.size(tamanoPixel).background(vacio))
+        }
+
+
+        Row {
+            Box(modifier = Modifier.size(tamanoPixel).background(vacio))
+            Box(modifier = Modifier.size(tamanoPixel).background(rojo))
+            Box(modifier = Modifier.size(tamanoPixel).background(rojo))
+            Box(modifier = Modifier.size(tamanoPixel).background(amarillo))
+            Box(modifier = Modifier.size(tamanoPixel).background(negro))
+            Box(modifier = Modifier.size(tamanoPixel).background(vacio))
+            Box(modifier = Modifier.size(tamanoPixel).background(vacio))
+            Box(modifier = Modifier.size(tamanoPixel).background(negro))
+            Box(modifier = Modifier.size(tamanoPixel).background(naranja))
+            Box(modifier = Modifier.size(tamanoPixel).background(naranja))
+            Box(modifier = Modifier.size(tamanoPixel).background(naranja))
+            Box(modifier = Modifier.size(tamanoPixel).background(naranja))
+            Box(modifier = Modifier.size(tamanoPixel).background(negro))
+            Box(modifier = Modifier.size(tamanoPixel).background(vacio))
+            Box(modifier = Modifier.size(tamanoPixel).background(vacio))
+            Box(modifier = Modifier.size(tamanoPixel).background(vacio))
+            Box(modifier = Modifier.size(tamanoPixel).background(vacio))
+            Box(modifier = Modifier.size(tamanoPixel).background(vacio))
+            Box(modifier = Modifier.size(tamanoPixel).background(vacio))
+        }
+
+
+        Row {
+            Box(modifier = Modifier.size(tamanoPixel).background(vacio))
+            Box(modifier = Modifier.size(tamanoPixel).background(vacio))
+            Box(modifier = Modifier.size(tamanoPixel).background(rojo))
+            Box(modifier = Modifier.size(tamanoPixel).background(rojo))
+            Box(modifier = Modifier.size(tamanoPixel).background(negro))
+            Box(modifier = Modifier.size(tamanoPixel).background(vacio))
+            Box(modifier = Modifier.size(tamanoPixel).background(vacio))
+            Box(modifier = Modifier.size(tamanoPixel).background(negro))
+            Box(modifier = Modifier.size(tamanoPixel).background(naranja))
+            Box(modifier = Modifier.size(tamanoPixel).background(naranja))
+            Box(modifier = Modifier.size(tamanoPixel).background(naranja))
+            Box(modifier = Modifier.size(tamanoPixel).background(naranja))
+            Box(modifier = Modifier.size(tamanoPixel).background(naranja))
+            Box(modifier = Modifier.size(tamanoPixel).background(negro))
+            Box(modifier = Modifier.size(tamanoPixel).background(vacio))
+            Box(modifier = Modifier.size(tamanoPixel).background(vacio))
+            Box(modifier = Modifier.size(tamanoPixel).background(vacio))
+            Box(modifier = Modifier.size(tamanoPixel).background(vacio))
+            Box(modifier = Modifier.size(tamanoPixel).background(vacio))
+        }
+
+
+        Row {
+            Box(modifier = Modifier.size(tamanoPixel).background(vacio))
+            Box(modifier = Modifier.size(tamanoPixel).background(vacio))
+            Box(modifier = Modifier.size(tamanoPixel).background(negro))
+            Box(modifier = Modifier.size(tamanoPixel).background(negro))
+            Box(modifier = Modifier.size(tamanoPixel).background(negro))
+            Box(modifier = Modifier.size(tamanoPixel).background(vacio))
+            Box(modifier = Modifier.size(tamanoPixel).background(negro))
+            Box(modifier = Modifier.size(tamanoPixel).background(naranja))
+            Box(modifier = Modifier.size(tamanoPixel).background(naranja))
+            Box(modifier = Modifier.size(tamanoPixel).background(naranja))
+            Box(modifier = Modifier.size(tamanoPixel).background(naranja))
+            Box(modifier = Modifier.size(tamanoPixel).background(naranja))
+            Box(modifier = Modifier.size(tamanoPixel).background(naranja))
+            Box(modifier = Modifier.size(tamanoPixel).background(naranja))
+            Box(modifier = Modifier.size(tamanoPixel).background(negro))
+            Box(modifier = Modifier.size(tamanoPixel).background(vacio))
+            Box(modifier = Modifier.size(tamanoPixel).background(vacio))
+            Box(modifier = Modifier.size(tamanoPixel).background(vacio))
+            Box(modifier = Modifier.size(tamanoPixel).background(vacio))
+        }
+
+
+        Row {
+            Box(modifier = Modifier.size(tamanoPixel).background(vacio))
+            Box(modifier = Modifier.size(tamanoPixel).background(vacio))
+            Box(modifier = Modifier.size(tamanoPixel).background(negro))
+            Box(modifier = Modifier.size(tamanoPixel).background(naranja))
+            Box(modifier = Modifier.size(tamanoPixel).background(negro))
+            Box(modifier = Modifier.size(tamanoPixel).background(vacio))
+            Box(modifier = Modifier.size(tamanoPixel).background(negro))
+            Box(modifier = Modifier.size(tamanoPixel).background(naranja))
+            Box(modifier = Modifier.size(tamanoPixel).background(naranja))
+            Box(modifier = Modifier.size(tamanoPixel).background(naranja))
+            Box(modifier = Modifier.size(tamanoPixel).background(naranja))
+            Box(modifier = Modifier.size(tamanoPixel).background(naranja))
+            Box(modifier = Modifier.size(tamanoPixel).background(naranja))
+            Box(modifier = Modifier.size(tamanoPixel).background(naranja))
+            Box(modifier = Modifier.size(tamanoPixel).background(negro))
+            Box(modifier = Modifier.size(tamanoPixel).background(vacio))
+            Box(modifier = Modifier.size(tamanoPixel).background(vacio))
+            Box(modifier = Modifier.size(tamanoPixel).background(vacio))
+            Box(modifier = Modifier.size(tamanoPixel).background(vacio))
+        }
+
+
+        Row {
+            Box(modifier = Modifier.size(tamanoPixel).background(vacio))
+            Box(modifier = Modifier.size(tamanoPixel).background(vacio))
+            Box(modifier = Modifier.size(tamanoPixel).background(negro))
+            Box(modifier = Modifier.size(tamanoPixel).background(naranja))
+            Box(modifier = Modifier.size(tamanoPixel).background(negro))
+            Box(modifier = Modifier.size(tamanoPixel).background(vacio))
+            Box(modifier = Modifier.size(tamanoPixel).background(negro))
+            Box(modifier = Modifier.size(tamanoPixel).background(naranja))
+            Box(modifier = Modifier.size(tamanoPixel).background(blanco))
+            Box(modifier = Modifier.size(tamanoPixel).background(naranja))
+            Box(modifier = Modifier.size(tamanoPixel).background(naranja))
+            Box(modifier = Modifier.size(tamanoPixel).background(naranja))
+            Box(modifier = Modifier.size(tamanoPixel).background(naranja))
+            Box(modifier = Modifier.size(tamanoPixel).background(blanco))
+            Box(modifier = Modifier.size(tamanoPixel).background(negro))
+            Box(modifier = Modifier.size(tamanoPixel).background(negro))
+            Box(modifier = Modifier.size(tamanoPixel).background(vacio))
+            Box(modifier = Modifier.size(tamanoPixel).background(vacio))
+            Box(modifier = Modifier.size(tamanoPixel).background(vacio))
+        }
+
+
+        Row {
+            Box(modifier = Modifier.size(tamanoPixel).background(vacio))
+            Box(modifier = Modifier.size(tamanoPixel).background(vacio))
+            Box(modifier = Modifier.size(tamanoPixel).background(negro))
+            Box(modifier = Modifier.size(tamanoPixel).background(naranja))
+            Box(modifier = Modifier.size(tamanoPixel).background(negro))
+            Box(modifier = Modifier.size(tamanoPixel).background(vacio))
+            Box(modifier = Modifier.size(tamanoPixel).background(negro))
+            Box(modifier = Modifier.size(tamanoPixel).background(naranja))
+            Box(modifier = Modifier.size(tamanoPixel).background(celeste))
+            Box(modifier = Modifier.size(tamanoPixel).background(naranja))
+            Box(modifier = Modifier.size(tamanoPixel).background(naranja))
+            Box(modifier = Modifier.size(tamanoPixel).background(naranja))
+            Box(modifier = Modifier.size(tamanoPixel).background(naranja))
+            Box(modifier = Modifier.size(tamanoPixel).background(celeste))
+            Box(modifier = Modifier.size(tamanoPixel).background(negro))
+            Box(modifier = Modifier.size(tamanoPixel).background(negro))
+            Box(modifier = Modifier.size(tamanoPixel).background(negro))
+            Box(modifier = Modifier.size(tamanoPixel).background(vacio))
+            Box(modifier = Modifier.size(tamanoPixel).background(vacio))
+        }
+
+
+        Row {
+            Box(modifier = Modifier.size(tamanoPixel).background(vacio))
+            Box(modifier = Modifier.size(tamanoPixel).background(vacio))
+            Box(modifier = Modifier.size(tamanoPixel).background(vacio))
+            Box(modifier = Modifier.size(tamanoPixel).background(negro))
+            Box(modifier = Modifier.size(tamanoPixel).background(naranja))
+            Box(modifier = Modifier.size(tamanoPixel).background(negro))
+            Box(modifier = Modifier.size(tamanoPixel).background(naranja))
+            Box(modifier = Modifier.size(tamanoPixel).background(naranja))
+            Box(modifier = Modifier.size(tamanoPixel).background(negro))
+            Box(modifier = Modifier.size(tamanoPixel).background(negro))
+            Box(modifier = Modifier.size(tamanoPixel).background(negro))
+            Box(modifier = Modifier.size(tamanoPixel).background(negro))
+            Box(modifier = Modifier.size(tamanoPixel).background(negro))
+            Box(modifier = Modifier.size(tamanoPixel).background(negro))
+            Box(modifier = Modifier.size(tamanoPixel).background(negro))
+            Box(modifier = Modifier.size(tamanoPixel).background(naranja))
+            Box(modifier = Modifier.size(tamanoPixel).background(negro))
+            Box(modifier = Modifier.size(tamanoPixel).background(vacio))
+            Box(modifier = Modifier.size(tamanoPixel).background(vacio))
+        }
+
+
+        Row {
+            Box(modifier = Modifier.size(tamanoPixel).background(vacio))
+            Box(modifier = Modifier.size(tamanoPixel).background(vacio))
+            Box(modifier = Modifier.size(tamanoPixel).background(vacio))
+            Box(modifier = Modifier.size(tamanoPixel).background(negro))
+            Box(modifier = Modifier.size(tamanoPixel).background(negro))
+            Box(modifier = Modifier.size(tamanoPixel).background(negro))
+            Box(modifier = Modifier.size(tamanoPixel).background(naranja))
+            Box(modifier = Modifier.size(tamanoPixel).background(naranja))
+            Box(modifier = Modifier.size(tamanoPixel).background(naranja))
+            Box(modifier = Modifier.size(tamanoPixel).background(naranja))
+            Box(modifier = Modifier.size(tamanoPixel).background(naranja))
+            Box(modifier = Modifier.size(tamanoPixel).background(naranja))
+            Box(modifier = Modifier.size(tamanoPixel).background(naranja))
+            Box(modifier = Modifier.size(tamanoPixel).background(negro))
+            Box(modifier = Modifier.size(tamanoPixel).background(naranja))
+            Box(modifier = Modifier.size(tamanoPixel).background(naranja))
+            Box(modifier = Modifier.size(tamanoPixel).background(naranja))
+            Box(modifier = Modifier.size(tamanoPixel).background(negro))
+            Box(modifier = Modifier.size(tamanoPixel).background(vacio))
+        }
+
+
+        Row {
+            Box(modifier = Modifier.size(tamanoPixel).background(vacio))
+            Box(modifier = Modifier.size(tamanoPixel).background(vacio))
+            Box(modifier = Modifier.size(tamanoPixel).background(vacio))
+            Box(modifier = Modifier.size(tamanoPixel).background(negro))
+            Box(modifier = Modifier.size(tamanoPixel).background(naranja))
+            Box(modifier = Modifier.size(tamanoPixel).background(naranja))
+            Box(modifier = Modifier.size(tamanoPixel).background(negro))
+            Box(modifier = Modifier.size(tamanoPixel).background(negro))
+            Box(modifier = Modifier.size(tamanoPixel).background(naranja))
+            Box(modifier = Modifier.size(tamanoPixel).background(naranja))
+            Box(modifier = Modifier.size(tamanoPixel).background(naranja))
+            Box(modifier = Modifier.size(tamanoPixel).background(naranja))
+            Box(modifier = Modifier.size(tamanoPixel).background(naranja))
+            Box(modifier = Modifier.size(tamanoPixel).background(negro))
+            Box(modifier = Modifier.size(tamanoPixel).background(naranja))
+            Box(modifier = Modifier.size(tamanoPixel).background(naranja))
+            Box(modifier = Modifier.size(tamanoPixel).background(naranja))
+            Box(modifier = Modifier.size(tamanoPixel).background(negro))
+            Box(modifier = Modifier.size(tamanoPixel).background(vacio))
+        }
+
+
+        Row {
+            Box(modifier = Modifier.size(tamanoPixel).background(vacio))
+            Box(modifier = Modifier.size(tamanoPixel).background(vacio))
+            Box(modifier = Modifier.size(tamanoPixel).background(vacio))
+            Box(modifier = Modifier.size(tamanoPixel).background(negro))
+            Box(modifier = Modifier.size(tamanoPixel).background(naranja))
+            Box(modifier = Modifier.size(tamanoPixel).background(naranja))
+            Box(modifier = Modifier.size(tamanoPixel).background(negro))
+            Box(modifier = Modifier.size(tamanoPixel).background(naranja))
+            Box(modifier = Modifier.size(tamanoPixel).background(negro))
+            Box(modifier = Modifier.size(tamanoPixel).background(negro))
+            Box(modifier = Modifier.size(tamanoPixel).background(negro))
+            Box(modifier = Modifier.size(tamanoPixel).background(negro))
+            Box(modifier = Modifier.size(tamanoPixel).background(negro))
+            Box(modifier = Modifier.size(tamanoPixel).background(negro))
+            Box(modifier = Modifier.size(tamanoPixel).background(naranja))
+            Box(modifier = Modifier.size(tamanoPixel).background(naranja))
+            Box(modifier = Modifier.size(tamanoPixel).background(negro))
+            Box(modifier = Modifier.size(tamanoPixel).background(negro))
+            Box(modifier = Modifier.size(tamanoPixel).background(vacio))
+        }
+
+
+        Row {
+            Box(modifier = Modifier.size(tamanoPixel).background(vacio))
+            Box(modifier = Modifier.size(tamanoPixel).background(vacio))
+            Box(modifier = Modifier.size(tamanoPixel).background(vacio))
+            Box(modifier = Modifier.size(tamanoPixel).background(vacio))
+            Box(modifier = Modifier.size(tamanoPixel).background(negro))
+            Box(modifier = Modifier.size(tamanoPixel).background(negro))
+            Box(modifier = Modifier.size(tamanoPixel).background(naranja))
+            Box(modifier = Modifier.size(tamanoPixel).background(naranja))
+            Box(modifier = Modifier.size(tamanoPixel).background(crema))
+            Box(modifier = Modifier.size(tamanoPixel).background(crema))
+            Box(modifier = Modifier.size(tamanoPixel).background(crema))
+            Box(modifier = Modifier.size(tamanoPixel).background(crema))
+            Box(modifier = Modifier.size(tamanoPixel).background(naranja))
+            Box(modifier = Modifier.size(tamanoPixel).background(naranja))
+            Box(modifier = Modifier.size(tamanoPixel).background(negro))
+            Box(modifier = Modifier.size(tamanoPixel).background(negro))
+            Box(modifier = Modifier.size(tamanoPixel).background(vacio))
+            Box(modifier = Modifier.size(tamanoPixel).background(vacio))
+            Box(modifier = Modifier.size(tamanoPixel).background(vacio))
+        }
+
+
+        Row {
+            Box(modifier = Modifier.size(tamanoPixel).background(vacio))
+            Box(modifier = Modifier.size(tamanoPixel).background(vacio))
+            Box(modifier = Modifier.size(tamanoPixel).background(vacio))
+            Box(modifier = Modifier.size(tamanoPixel).background(vacio))
+            Box(modifier = Modifier.size(tamanoPixel).background(vacio))
+            Box(modifier = Modifier.size(tamanoPixel).background(negro))
+            Box(modifier = Modifier.size(tamanoPixel).background(naranja))
+            Box(modifier = Modifier.size(tamanoPixel).background(naranja))
+            Box(modifier = Modifier.size(tamanoPixel).background(crema))
+            Box(modifier = Modifier.size(tamanoPixel).background(crema))
+            Box(modifier = Modifier.size(tamanoPixel).background(crema))
+            Box(modifier = Modifier.size(tamanoPixel).background(crema))
+            Box(modifier = Modifier.size(tamanoPixel).background(naranja))
+            Box(modifier = Modifier.size(tamanoPixel).background(naranja))
+            Box(modifier = Modifier.size(tamanoPixel).background(negro))
+            Box(modifier = Modifier.size(tamanoPixel).background(vacio))
+            Box(modifier = Modifier.size(tamanoPixel).background(vacio))
+            Box(modifier = Modifier.size(tamanoPixel).background(vacio))
+            Box(modifier = Modifier.size(tamanoPixel).background(vacio))
+        }
+
+
+        Row {
+            Box(modifier = Modifier.size(tamanoPixel).background(vacio))
+            Box(modifier = Modifier.size(tamanoPixel).background(vacio))
+            Box(modifier = Modifier.size(tamanoPixel).background(vacio))
+            Box(modifier = Modifier.size(tamanoPixel).background(vacio))
+            Box(modifier = Modifier.size(tamanoPixel).background(vacio))
+            Box(modifier = Modifier.size(tamanoPixel).background(negro))
+            Box(modifier = Modifier.size(tamanoPixel).background(naranja))
+            Box(modifier = Modifier.size(tamanoPixel).background(naranja))
+            Box(modifier = Modifier.size(tamanoPixel).background(crema))
+            Box(modifier = Modifier.size(tamanoPixel).background(crema))
+            Box(modifier = Modifier.size(tamanoPixel).background(crema))
+            Box(modifier = Modifier.size(tamanoPixel).background(crema))
+            Box(modifier = Modifier.size(tamanoPixel).background(naranja))
+            Box(modifier = Modifier.size(tamanoPixel).background(naranja))
+            Box(modifier = Modifier.size(tamanoPixel).background(negro))
+            Box(modifier = Modifier.size(tamanoPixel).background(vacio))
+            Box(modifier = Modifier.size(tamanoPixel).background(vacio))
+            Box(modifier = Modifier.size(tamanoPixel).background(vacio))
+            Box(modifier = Modifier.size(tamanoPixel).background(vacio))
+        }
+
+
+        Row {
+            Box(modifier = Modifier.size(tamanoPixel).background(vacio))
+            Box(modifier = Modifier.size(tamanoPixel).background(vacio))
+            Box(modifier = Modifier.size(tamanoPixel).background(vacio))
+            Box(modifier = Modifier.size(tamanoPixel).background(vacio))
+            Box(modifier = Modifier.size(tamanoPixel).background(negro))
+            Box(modifier = Modifier.size(tamanoPixel).background(naranja))
+            Box(modifier = Modifier.size(tamanoPixel).background(naranja))
+            Box(modifier = Modifier.size(tamanoPixel).background(naranja))
+            Box(modifier = Modifier.size(tamanoPixel).background(naranja))
+            Box(modifier = Modifier.size(tamanoPixel).background(negro))
+            Box(modifier = Modifier.size(tamanoPixel).background(negro))
+            Box(modifier = Modifier.size(tamanoPixel).background(naranja))
+            Box(modifier = Modifier.size(tamanoPixel).background(naranja))
+            Box(modifier = Modifier.size(tamanoPixel).background(naranja))
+            Box(modifier = Modifier.size(tamanoPixel).background(naranja))
+            Box(modifier = Modifier.size(tamanoPixel).background(negro))
+            Box(modifier = Modifier.size(tamanoPixel).background(vacio))
+            Box(modifier = Modifier.size(tamanoPixel).background(vacio))
+            Box(modifier = Modifier.size(tamanoPixel).background(vacio))
+        }
+
+
+        Row {
+            Box(modifier = Modifier.size(tamanoPixel).background(vacio))
+            Box(modifier = Modifier.size(tamanoPixel).background(vacio))
+            Box(modifier = Modifier.size(tamanoPixel).background(vacio))
+            Box(modifier = Modifier.size(tamanoPixel).background(vacio))
+            Box(modifier = Modifier.size(tamanoPixel).background(negro))
+            Box(modifier = Modifier.size(tamanoPixel).background(negro))
+            Box(modifier = Modifier.size(tamanoPixel).background(naranja))
+            Box(modifier = Modifier.size(tamanoPixel).background(negro))
+            Box(modifier = Modifier.size(tamanoPixel).background(negro))
+            Box(modifier = Modifier.size(tamanoPixel).background(vacio))
+            Box(modifier = Modifier.size(tamanoPixel).background(vacio))
+            Box(modifier = Modifier.size(tamanoPixel).background(negro))
+            Box(modifier = Modifier.size(tamanoPixel).background(negro))
+            Box(modifier = Modifier.size(tamanoPixel).background(naranja))
+            Box(modifier = Modifier.size(tamanoPixel).background(negro))
+            Box(modifier = Modifier.size(tamanoPixel).background(negro))
+            Box(modifier = Modifier.size(tamanoPixel).background(vacio))
+            Box(modifier = Modifier.size(tamanoPixel).background(vacio))
+            Box(modifier = Modifier.size(tamanoPixel).background(vacio))
+        }
+
+
+        Row {
+            Box(modifier = Modifier.size(tamanoPixel).background(vacio))
+            Box(modifier = Modifier.size(tamanoPixel).background(vacio))
+            Box(modifier = Modifier.size(tamanoPixel).background(vacio))
+            Box(modifier = Modifier.size(tamanoPixel).background(vacio))
+            Box(modifier = Modifier.size(tamanoPixel).background(vacio))
+            Box(modifier = Modifier.size(tamanoPixel).background(negro))
+            Box(modifier = Modifier.size(tamanoPixel).background(negro))
+            Box(modifier = Modifier.size(tamanoPixel).background(negro))
+            Box(modifier = Modifier.size(tamanoPixel).background(vacio))
+            Box(modifier = Modifier.size(tamanoPixel).background(vacio))
+            Box(modifier = Modifier.size(tamanoPixel).background(vacio))
+            Box(modifier = Modifier.size(tamanoPixel).background(vacio))
+            Box(modifier = Modifier.size(tamanoPixel).background(negro))
+            Box(modifier = Modifier.size(tamanoPixel).background(negro))
+            Box(modifier = Modifier.size(tamanoPixel).background(negro))
+            Box(modifier = Modifier.size(tamanoPixel).background(vacio))
+            Box(modifier = Modifier.size(tamanoPixel).background(vacio))
             Box(modifier = Modifier.size(tamanoPixel).background(vacio))
             Box(modifier = Modifier.size(tamanoPixel).background(vacio))
         }
@@ -99,6 +497,6 @@ fun CorazonPixelArt() {
 @Preview(showBackground = true)
 @Composable
 fun PreviewCorazonPixelArt() {
-    CorazonPixelArt()
+    PixelArt()
 }
 
